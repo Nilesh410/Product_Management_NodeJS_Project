@@ -25,7 +25,7 @@ let Basicontroller={
             password:data.passWord,
             confirmpassword:data.confirmPassWord
            })
-           let userExists=await UserModel.find({emailid:{$regex:"^"+data.emailId+"$",$options:"i"}})
+           let userExists=await UserModel.findOne({emailid:{$regex:"^"+data.emailId+"$",$options:"i"}})
            if(userExists)
            {
               request.session.message = "EmailId is already exists in the database";
@@ -46,9 +46,14 @@ let Basicontroller={
            response.redirect("/register-page")
         } catch (error) {
             request.session.message = "Error is coming during registration";
-            response.redirect("/register-page")
+            response.redirect("/register-page");
         }
        
+    },
+
+    async removeAll(request,response){
+        let result=await UserModel.deleteMany({})
+        response.json({status:true,message:result})
     }
 }
 
