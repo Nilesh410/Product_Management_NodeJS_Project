@@ -25,15 +25,24 @@ let Basicontroller={
             password:data.passWord,
             confirmpassword:data.confirmPassWord
            })
-           let result=await newUser.save()
-           if(result)
+           let userExists=await UserModel.find({emailid:{$regex:"^"+data.emailId+"$",$options:"i"}})
+           if(userExists)
            {
-              request.session.message = "Record Save Successfully";
+              request.session.message = "EmailId is already exists in the database";
            }
            else
            {
-            request.session.message = "Record not store successfully";
+            let result=await newUser.save()
+            if(result)
+            {
+               request.session.message = "Record Save Successfully";
+            }
+            else
+            {
+             request.session.message = "Record not store successfully";
+            }
            }
+           
            response.redirect("/register-page")
         } catch (error) {
             request.session.message = "Error is coming during registration";
