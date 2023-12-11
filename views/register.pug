@@ -46,6 +46,12 @@ html(lang="en")
                 label.form-label(for="confirmPassWord") Confirm Password
                 input.form-control#confirmPassWord(name="confirmPassWord" type="text", placeholder="Enter the confirm password" required value=newUser.confirmPassWord)
 
-              .mb-3.text-center
+              .mb-1.text-center
                 button(type="submit").btn.btn-success Save 
                 button(type="reset").ms-2.btn.btn-outline-danger Reset
+              
+              .mb-3.text-center
+                p 
+                  | Already have an account then 
+                  a.mx-1(href="/login-page") Click Here
+                  | to login

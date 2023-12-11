@@ -13,7 +13,7 @@ let Basicontroller={
     },
 
     loginPage(request,response){
-        response.render("login")
+        response.render("login",{message:""})
     }, 
 
     async saveUser(request,response){
