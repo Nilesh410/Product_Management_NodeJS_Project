@@ -51,6 +51,7 @@ let Basicontroller={
            {
               request.session.message = "EmailId is already exists in the database";
               request.session.newUser={...data}
+              response.redirect("/register-page")
            }
            else
            {
@@ -59,15 +60,17 @@ let Basicontroller={
             {
                request.session.message = "Record Save Successfully";
                request.session.newUser={}
+               response.redirect("/login-page")
             }
             else
             {
              request.session.message = "Record not store successfully";
              request.session.newUser={...data}
+             response.redirect("/register-page")
             }
            }
            
-           response.redirect("/register-page")
+           
         } catch (error) {
             request.session.message = "Error is coming during registration";
             request.session.newUser={...data}
