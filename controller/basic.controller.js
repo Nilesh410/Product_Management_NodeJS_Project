@@ -2,17 +2,34 @@ const UserModel = require("../model/user.model")
 
 let Basicontroller={
     dashboard(request,response){
-        response.render("dashboard")
+        if(request.session.login===undefined)  
+        {
+            response.redirect("/login-page")
+            return false
+        }
+        response.render("dashboard1")
     },
-    registerPage(request,reponse){
+    registerPage(request,response){
+        //check the user is in the login mode or not first 
+        // if it is in the sesssion then does not go the register page or login page, goes to dashboard
+        if(request.session.login!==undefined)  
+        {
+            response.redirect("/")
+            return false
+        }
         let message=request.session.message!== undefined ? request.session.message : ""
         delete request.session.message;
-        reponse.render("register",
+        response.render("register",
                        {message:message,
                         newUser:{...request.session.newUser}})
     },
 
     loginPage(request,response){
+        if(request.session.login!==undefined)
+        {
+            response.redirect("/")
+            return false
+        }
         let message=request.session.message!== undefined ? request.session.message : ""
         delete request.session.message;
         response.render("login",{message:message})
