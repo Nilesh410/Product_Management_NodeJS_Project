@@ -7,7 +7,9 @@ let Basicontroller={
     registerPage(request,reponse){
         let message=request.session.message!== undefined ? request.session.message : ""
         delete request.session.message;
-        reponse.render("register",{message:message})
+        reponse.render("register",
+                       {message:message,
+                        newUser:{...request.session.newUser}})
     },
 
     loginPage(request,response){
@@ -29,6 +31,7 @@ let Basicontroller={
            if(userExists)
            {
               request.session.message = "EmailId is already exists in the database";
+              request.session.newUser={...data}
            }
            else
            {
@@ -36,16 +39,19 @@ let Basicontroller={
             if(result)
             {
                request.session.message = "Record Save Successfully";
+               request.session.newUser={}
             }
             else
             {
              request.session.message = "Record not store successfully";
+             request.session.newUser={...data}
             }
            }
            
            response.redirect("/register-page")
         } catch (error) {
             request.session.message = "Error is coming during registration";
+            request.session.newUser={...data}
             response.redirect("/register-page");
         }
        

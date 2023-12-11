@@ -24,27 +24,27 @@ html(lang="en")
             form(action="/save-user" method="post")
               .mb-3
                 label.form-label(for="fullName") Full Name
-                input.form-control#fullName(name="fullName" type="text", placeholder="Enter the full name" required)
+                input.form-control#fullName(name="fullName" type="text", placeholder="Enter the full name" required value=newUser.fullName)
 
               .mb-3
                 label.form-label(for="emailId") Email Id
-                input.form-control#emailId(name="emailId" type="text", placeholder="Enter the email id" required)
+                input.form-control#emailId(name="emailId" type="text", placeholder="Enter the email id" required value=newUser.emailId)
 
               .mb-3
                 label.form-label(for="mobileNo") Mobile No
-                input.form-control#mobileNo(name="mobileNo" type="text", placeholder="Enter the mobile no" required)
+                input.form-control#mobileNo(name="mobileNo" type="text", placeholder="Enter the mobile no" required value=newUser.mobileNo)
 
               .mb-3
                 label.form-label(for="userName") User Name
-                input.form-control#userName(name="userName" type="text", placeholder="Enter the user name" required)
+                input.form-control#userName(name="userName" type="text", placeholder="Enter the user name" required value=newUser.userName)
 
               .mb-3
                 label.form-label(for="passWord") Password
-                input.form-control#passWord(name="passWord" type="text", placeholder="Enter the password" required)
+                input.form-control#passWord(name="passWord" type="text", placeholder="Enter the password" required value=newUser.passWord) 
 
               .mb-3
                 label.form-label(for="confirmPassWord") Confirm Password
-                input.form-control#confirmPassWord(name="confirmPassWord" type="text", placeholder="Enter the confirm password" required)
+                input.form-control#confirmPassWord(name="confirmPassWord" type="text", placeholder="Enter the confirm password" required value=newUser.confirmPassWord)
 
               .mb-3.text-center
                 button(type="submit").btn.btn-success Save 
