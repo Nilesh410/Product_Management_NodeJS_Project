@@ -13,7 +13,9 @@ let Basicontroller={
     },
 
     loginPage(request,response){
-        response.render("login",{message:""})
+        let message=request.session.message!== undefined ? request.session.message : ""
+        delete request.session.message;
+        response.render("login",{message:message})
     }, 
 
     async saveUser(request,response){
@@ -60,6 +62,30 @@ let Basicontroller={
     async removeAll(request,response){
         let result=await UserModel.deleteMany({})
         response.json({status:true,message:result})
+    },
+
+    async userLogin(request,response){
+         let data=request.body
+         try {
+            let userexist=await UserModel.findOne({
+                username:{$regex:`^${data.userName}$`,$options:"i"},
+                password:data.passWord
+            },{password:0})
+            if(userexist)
+            {
+                request.session.login={ userexist };
+                response.redirect("/")
+            }
+            else
+            {
+                request.session.message = "Username or password is wrong pleae try agian";
+                response.redirect("/login-page")
+            }
+            
+         } catch (error) {
+            request.session.message = "Unable to login";
+            response.redirect("/login-page")
+         }
     }
 }
 
