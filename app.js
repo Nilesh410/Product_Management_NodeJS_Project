@@ -5,6 +5,13 @@ const BasicRouter = require('./routes/baisc.routes')
 const app=express()
 const port=3051
 
+app.use(session({
+  secret: 'NSS_Product_Mangement',
+  resave: true,
+  saveUninitialized: true,
+  
+}))
+
 app.set('views', './views')
 app.set('view engine', 'pug')
 
@@ -12,12 +19,7 @@ app.use(express.json())
 app.use(express.urlencoded({extended:false}))
 app.use("/",BasicRouter)
 
-app.use(session({
-  secret: 'keyboard cat',
-  resave: false,
-  saveUninitialized: true,
-  
-}))
+
 
 let url=`mongodb://127.0.0.1:27017/Product_Management`
 mongoose.connect(url)

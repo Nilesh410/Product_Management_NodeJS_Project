@@ -5,7 +5,9 @@ let Basicontroller={
         response.render("dashboard")
     },
     registerPage(request,reponse){
-        reponse.render("register")
+        let message=request.session.message!== undefined ? request.session.message : ""
+        delete request.session.message;
+        reponse.render("register",{message:message})
     },
 
     loginPage(request,response){
@@ -26,16 +28,18 @@ let Basicontroller={
            let result=await newUser.save()
            if(result)
            {
-              response.send({status:true,message:"Record Save Successfully"})
+              request.session.message = "Record Save Successfully";
            }
            else
            {
-            response.send({status:false,message:"Record not store successfully"})
+            request.session.message = "Record not store successfully";
            }
+           response.redirect("/register-page")
         } catch (error) {
-            response.send({status:false,message:"error",error})
+            request.session.message = "Error is coming during registration";
+            response.redirect("/register-page")
         }
-        
+       
     }
 }
 

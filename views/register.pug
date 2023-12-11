@@ -10,6 +10,16 @@ html(lang="en")
     section.container-fluid 
       section.row 
         section.col-4.m-auto.card.mt-4 
+          if(message!=="")
+            #message 
+              .alert.alert-primary(role="alert") #{message}
+            script.
+              let message="#{message}"
+                if(message!=="")
+                {
+                  setTimeout(()=>{
+                    document.querySelector('#message').innerHTML=""},2000)
+                  }
           p.mb-0.text-center.h4.mt-2.text-primary User Registration
             form(action="/save-user" method="post")
               .mb-3
