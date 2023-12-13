@@ -7,7 +7,13 @@ let Basicontroller={
             response.redirect("/login-page")
             return false
         }
-        response.render("dashboard1")
+        response.render("dashboard1",{
+            login : request.session.login,
+        });
+    },
+    logout(request,response){
+         delete request.session.login;
+         response.redirect("/login-page")
     },
     registerPage(request,response){
         //check the user is in the login mode or not first 
