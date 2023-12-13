@@ -12,3 +12,28 @@ html(lang="en")
         section.col-11.m-auto.d-flex.justify-content-between.py-2 
           p.h4.mb-0 Welcome #{login.userexist.fullname.split(' ')[0]}
           a.btn.btn-danger.btn-sm(href="/logout") Logout
+      section.row
+        section.col-10.m-auto 
+          p.mt-2.text-center.text-primary.fs-3 Product Information
+          table.table.table-bordered
+            thead
+              tr
+                th(scope="col") #
+                th(scope="col") First
+                th(scope="col") Last
+                th(scope="col") Handle
+            tbody
+              tr
+                th(scope="row") 1
+                td Mark
+                td Otto
+                td @mdo
+              tr
+                th(scope="row") 2
+                td Jacob
+                td Thornton
+                td @fat
+              tr
+                th(scope="row") 3
+                td(colspan="2") Larry the Bird
+                td @twitter

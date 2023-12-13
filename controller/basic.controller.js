@@ -112,6 +112,10 @@ let Basicontroller={
             request.session.message = "Unable to login";
             response.redirect("/login-page")
          }
+    },
+    async saveProduct(request,response){
+        let data=request.body
+        response.json({status:true,data})
     }
 }
 
