@@ -1,4 +1,6 @@
 const Basicontroller = require('../controller/basic.controller')
+const multer  = require('multer')
+const upload = multer()
 
 const BasicRouter=require('express').Router()
 
@@ -9,6 +11,6 @@ BasicRouter.post("/save-user",Basicontroller.saveUser)
 BasicRouter.get("/remove-all",Basicontroller.removeAll)
 BasicRouter.post("/user-login",Basicontroller.userLogin)
 BasicRouter.get("/logout",Basicontroller.logout)
-BasicRouter.post("/save-new-user",Basicontroller.saveProduct)
+BasicRouter.post("/save-new-user",upload.none(),Basicontroller.saveProduct)
 
 module.exports=BasicRouter
