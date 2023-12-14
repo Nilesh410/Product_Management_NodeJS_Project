@@ -1,4 +1,5 @@
 const UserModel = require("../model/user.model")
+const ProductModel=require("../model/product.model")
 
 let Basicontroller={
     dashboard(request,response){
@@ -114,8 +115,27 @@ let Basicontroller={
          }
     },
     async saveProduct(request,response){
-        let data=request.body
-        response.json({status:true,data})
+        let {productname,qty,price,manufacturing_date}=request.body
+        try {
+            let newProduct=new ProductModel({
+                productname,
+                qty,
+                price,
+                manufacturing_date
+            })
+            let result=await newProduct.save()
+            if(result)
+            {
+                 response.json({status:true,message:"successfully saved the product data"})
+            }
+            else
+            {
+                response.json({status:false,message:"Does not save properly"})
+            }
+        } catch (error) {
+            response.json({status:false,Error})
+        }
+      
     }
 }
 
