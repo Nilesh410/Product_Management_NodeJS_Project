@@ -142,7 +142,7 @@ let Basicontroller={
             let result=await ProductModel.find()
             if(result)
             {
-                response.json({status:true,message:result})
+                response.json({status:true,result})
             }
         } catch (error) {
             response.json({status:false,message:"server error"})
