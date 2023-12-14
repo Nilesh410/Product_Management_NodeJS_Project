@@ -136,6 +136,17 @@ let Basicontroller={
             response.json({status:false,Error})
         }
       
+    },
+    async getProduct(request,response){
+        try {
+            let result=await ProductModel.find()
+            if(result)
+            {
+                response.json({status:true,message:result})
+            }
+        } catch (error) {
+            response.json({status:false,message:"server error"})
+        }
     }
 }
 
