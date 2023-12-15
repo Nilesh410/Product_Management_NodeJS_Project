@@ -9,6 +9,17 @@ html(lang="en")
     script(src="/js/product.client.js")
   body 
     section.container-fluid 
+      .modal.fade(tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false")#addNewProduct
+        .modal-dialog
+          .modal-content
+            .modal-header
+              h5.modal-title Modal title
+              button.btn-close(type="button", data-bs-dismiss="modal", aria-label="Close")
+            .modal-body
+              p Modal body text goes here.
+            .modal-footer
+              button.btn.btn-secondary(type="button", data-bs-dismiss="modal") Close
+              button.btn.btn-primary(type="button") Save changes
       section.row.border-bottom.border-2 
         section.col-11.m-auto.d-flex.justify-content-between.py-2 
           p.h4.mb-0 Welcome #{login.userexist.fullname.split(' ')[0]}
@@ -16,6 +27,7 @@ html(lang="en")
       section.row
         section.col-10.m-auto 
           p.mt-2.text-center.text-primary.fs-3 Product Information
+          button.btn.btn-primary.btn-sm.mb-2(data-bs-toggle="modal" data-bs-target="#addNewProduct") +add
           table.table.table-bordered
             thead
               tr
