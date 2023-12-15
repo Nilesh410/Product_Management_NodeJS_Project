@@ -1,6 +1,18 @@
 window.addEventListener("load",()=>{
     let list=[]
     let tbody=document.querySelector("#tbody")
+    let saveNewProductButton=document.querySelector("#saveNewProduct")
+    saveNewProductButton.addEventListener('click',()=>{
+
+        let newProduct={
+               productName: document.querySelector("#productName").value,
+               quantity: document.querySelector("#qty").value,
+                price: document.querySelector("#price").value,
+                mfd: document.querySelector("#mfd").value
+        }
+        console.log(newProduct)
+    })
+
     async function getProductDetails(){
         let url=`http://localhost:3051/get-product`;
         let response= await fetch(url, {method: "GET" });
@@ -28,6 +40,9 @@ window.addEventListener("load",()=>{
                     </tr>`
 
         }).join("")
+        addRemoveButtonEvent()
+    }
+    function addRemoveButtonEvent(){
         let removeBttn=document.querySelectorAll(".remove")
         removeBttn.forEach((button)=>{
             button.addEventListener('click',()=>{
