@@ -24,9 +24,22 @@ window.addEventListener("load",()=>{
                       <td>${product.productname}</td>
                       <td>${product.qty}</td>
                       <td>${product.price}</td>
+                      <td><button data-remove-id="${product._id}" class="remove btn btn-danger btn-sm">DEL</button>
                     </tr>`
 
         }).join("")
+        let removeBttn=document.querySelectorAll(".remove")
+        removeBttn.forEach((button)=>{
+            button.addEventListener('click',()=>{
+                let {removeId}=button.dataset
+                removeProduct(removeId)
+            })
+        })
+    }
+    async function removeProduct(id)
+    {
+        let url=`http://localhost:3051/del-product/${id}`;
+        console.log(url)
     }
     getProductDetails()
 
