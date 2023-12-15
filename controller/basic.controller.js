@@ -147,6 +147,17 @@ let Basicontroller={
         } catch (error) {
             response.json({status:false,message:"server error"})
         }
+    },
+    async delProduct(request,response)
+    {
+        let {id}=request.params;
+        try {
+            await ProductModel.findByIdAndDelete(id)
+            response.json({status:true,message:"record del successfully"})
+            }
+        catch (error) {
+            response.json({status:false,message:"server error"})
+        }
     }
 }
 

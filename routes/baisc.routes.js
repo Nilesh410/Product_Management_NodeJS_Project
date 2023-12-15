@@ -11,7 +11,8 @@ BasicRouter.post("/save-user",Basicontroller.saveUser)
 BasicRouter.get("/remove-all",Basicontroller.removeAll)
 BasicRouter.post("/user-login",Basicontroller.userLogin)
 BasicRouter.get("/logout",Basicontroller.logout)
-BasicRouter.post("/save-new-user",upload.none(),Basicontroller.saveProduct)
+BasicRouter.post("/save-new-product",upload.none(),Basicontroller.saveProduct)
 BasicRouter.get("/get-product",Basicontroller.getProduct)
+BasicRouter.delete("/del-product/:id",Basicontroller.delProduct)
 
 module.exports=BasicRouter

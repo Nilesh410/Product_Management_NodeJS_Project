@@ -39,9 +39,14 @@ window.addEventListener("load",()=>{
     async function removeProduct(id)
     {
         let url=`http://localhost:3051/del-product/${id}`;
-        console.log(url)
+        let response=await fetch(url,{method:"DELETE"});
+        let data=await response.json();
+        if(data.status===true)
+        {
+            getProductDetails()
+        }
+        alert(data.message)
     }
     getProductDetails()
-
    
 })
